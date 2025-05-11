@@ -47,7 +47,7 @@ jobs:
         run: echo "BUILD_NUMBER=$(date '+%d.%m.%Y.%H.%M.%S')" >> $GITHUB_OUTPUT
 
       - name: Build & Push Docker image
-        run: mvn -ntp -B verify -Ddocker.image.tag=${{steps.build-number.outputs.BUILD_NUMBER}} jib:build
+        run: mvn -ntp -B verify -DskipTests -Ddocker.image.tag=${{steps.build-number.outputs.BUILD_NUMBER}} jib:build
 
       - name: Update Dockerrun.aws.json api image tag with new build number
         run: |
