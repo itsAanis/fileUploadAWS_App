@@ -1,0 +1,8 @@
+spring:
+  datasource:
+    url: jdbc-secretsmanager:postgresql://<your-rds-host>:5432/<db-name>
+    username: <secrets-manager-arn-or-name>
+    driver-class-name: com.amazonaws.secretsmanager.sql.AWSSecretsManagerPostgreSQLDriver
+aws:
+  s3:
+    mock: false

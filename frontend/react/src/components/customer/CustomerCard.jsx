@@ -15,17 +15,32 @@ import {
     useColorModeValue, useDisclosure,
 } from '@chakra-ui/react';
 
-import {useRef} from 'react'
+import {useRef, useEffect, useState} from 'react'
 import {deleteCustomer} from "../../services/client.js";
 import {errorNotification, successNotification} from "../../services/notification.js";
 import UpdateCustomerDrawer from "./UpdateCustomerDrawer.jsx";
+import {getCustomerProfilePictureUrl} from "../../services/client.js";
 
 export default function CardWithImage({id, name, email, age, gender, imageNumber, fetchCustomers}) {
     const randomUserGender = gender === "MALE" ? "men" : "women";
 
+    const [profilePicUrl, setProfilePicUrl] = useState('')
+    useEffect(() => {
+        const fetchUrl = async () => {
+          try {
+            const url = await getCustomerProfilePictureUrl(id);
+            setProfilePicUrl(url);
+          } catch (error) {
+            console.error('Error fetching profile picture URL:', error);
+          }xs
+        };
+        fetchUrl();
+      }, [id]);
+
+
     const { isOpen, onOpen, onClose } = useDisclosure()
     const cancelRef = useRef()
-
+    console.log(id)
     return (
         <Center py={6}>
             <Box
@@ -49,8 +64,8 @@ export default function CardWithImage({id, name, email, age, gender, imageNumber
                     <Avatar
                         size={'xl'}
                         src={
-                            `https://randomuser.me/api/portraits/${randomUserGender}/${imageNumber}.jpg`
-                        }
+                            profilePicUrl
+                        }       
                         alt={'Author'}
                         css={{
                             border: '2px solid white',

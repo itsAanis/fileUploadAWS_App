@@ -7,19 +7,19 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.0.0</version>
+        <version>3.4.4</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
-    <groupId>org.amigoscode</groupId>
-    <artifactId>amigoscode-api</artifactId>
+    <groupId>org.fileupload</groupId>
+    <artifactId>fileupload-api</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
-        <docker.username>amigoscode</docker.username>
-        <docker.image.name>amigoscode-api</docker.image.name>
+        <docker.username>fileupload</docker.username>
+        <docker.image.name>fileupload-api</docker.image.name>
         <docker.image.tag/>
         <jsonwebtoken.version>0.11.5</jsonwebtoken.version>
     </properties>
@@ -28,6 +28,7 @@
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
+            <version>42.7.2</version>
             <scope>runtime</scope>
         </dependency>
 
@@ -49,6 +50,7 @@
         <dependency>
             <groupId>org.flywaydb</groupId>
             <artifactId>flyway-core</artifactId>
+            <version>8.5.13</version>
         </dependency>
 
         <dependency>
@@ -120,7 +122,23 @@
             <version>${jsonwebtoken.version}</version>
             <scope>runtime</scope>
         </dependency>
-
+        <dependency>
+            <groupId>software.amazon.awssdk</groupId>
+            <artifactId>bom</artifactId>
+            <version>2.30.25</version>
+            <type>pom</type>
+            <scope>import</scope>
+        </dependency>
+        <dependency>
+            <groupId>software.amazon.awssdk</groupId>
+            <artifactId>s3-transfer-manager</artifactId>
+            <version>2.30.25</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+            <version>6.2.5</version>
+        </dependency>
     </dependencies>
 
     <build>
